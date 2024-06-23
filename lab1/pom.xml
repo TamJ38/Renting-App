@@ -15,7 +15,9 @@
     <description>lab1</description>
     <properties>
         <java.version>22</java.version>
+        <maven.compiler.release>11</maven.compiler.release>
     </properties>
+
     <dependencies>
 <!--        <dependency>-->
 <!--            <groupId>org.springframework.boot</groupId>-->
@@ -83,6 +85,7 @@
                             <artifactId>lombok</artifactId>
                         </exclude>
                     </excludes>
+                    <mainClass>mk.ukim.finki.lab1.Lab1Application</mainClass>
                 </configuration>
             </plugin>
         </plugins>
