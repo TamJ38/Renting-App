@@ -22,20 +22,33 @@
 
 
 
-FROM openjdk:19 as build
+#FROM openjdk:19 as build
+#
+#WORKDIR /app
+#
+#COPY mvnw .
+#COPY .mvn .mvn
+#COPY pom.xml .
+#
+#RUN chmod +x mvnw
+#RUN ./mvnw install -DskipTests
+#RUN mkdir -p target/dependency && (cd target/dependency; jar -xf ../*.jar)
+#
+#RUN ls -la target/
+#COPY target/lab1-0.0.1-SNAPSHOT.jar app.jar
+#
+#EXPOSE 9090
+#
+#ENTRYPOINT ["java","-jar","/app/app.jar"]
+FROM amazoncorretto:17-alpine
 
 WORKDIR /app
 
-COPY mvnw .
-COPY .mvn .mvn
-COPY pom.xml .
+EXPOSE 8080
 
-RUN chmod +x mvnw
-RUN ./mvnw install -DskipTests
-RUN mkdir -p target/dependency && (cd target/dependency; jar -xf ../*.jar)
+COPY . .
 
-COPY target/lab1-0.0.1-SNAPSHOT.jar app.jar
-EXPOSE 9090
+RUN chmod +x mvnw && ./mvnw dependency:resolve
 
-ENTRYPOINT ["java","-jar","/app/app.jar"]
 
+CMD ["./mvnw", "spring-boot:run"]
