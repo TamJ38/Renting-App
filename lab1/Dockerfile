@@ -34,8 +34,7 @@ RUN chmod +x mvnw
 RUN ./mvnw install -DskipTests
 RUN mkdir -p target/dependency && (cd target/dependency; jar -xf ../*.jar)
 
-COPY target/*.jar app.jar
-
+COPY target/lab1-0.0.1-SNAPSHOT.jar app.jar
 EXPOSE 9090
 
 ENTRYPOINT ["java","-jar","/app/app.jar"]
