@@ -34,14 +34,7 @@ RUN chmod +x mvnw
 RUN ./mvnw install -DskipTests
 RUN mkdir -p target/dependency && (cd target/dependency; jar -xf ../*.jar)
 
-COPY src ./src
-RUN ./mvnw clean package
-
-FROM openjdk:19-jdk-alpine
-
-WORKDIR /app
-
-COPY --from=build /app/target/*.jar app.jar
+COPY target/*.jar app.jar
 
 EXPOSE 9090
 

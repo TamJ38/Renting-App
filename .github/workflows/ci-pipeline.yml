@@ -12,7 +12,7 @@ jobs:
       - name: Backend Docker Image Build
         run: docker build ./lab1 --file ./lab1/Dockerfile --tag ${{ secrets.DOCKERHUB_USERNAME }}/renting-app-backend:latest
       - name: DockerHub Login
-        uses: docker/login-action@v2
+        uses: docker/login-action@v1
         with:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
@@ -26,7 +26,7 @@ jobs:
       - name: Frontend Docker Image Build
         run: docker build ./frontend --file ./frontend/Dockerfile --tag ${{ secrets.DOCKERHUB_USERNAME }}/renting-app-frontend:latest
       - name: DockerHub Login
-        uses: docker/login-action@v2
+        uses: docker/login-action@v1
         with:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
